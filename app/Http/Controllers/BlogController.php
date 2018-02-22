@@ -31,4 +31,18 @@ class BlogController extends Controller
         $blog = Blog::findOrFail($id);
         return view('blog.show', compact('blog'));
     }
+
+    public function edit($id)
+    {
+        $blog = Blog::findOrFail($id);
+        return view('blog.edit', compact('blog'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $input = $request->all();
+        $blog = Blog::findOrFail($id);
+        $blog->update($input);
+        return back();
+    }
 }
