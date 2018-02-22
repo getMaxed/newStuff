@@ -18,4 +18,17 @@ class BlogController extends Controller
     {
         return view('blog.create');
     }
+
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        Blog::create($input);
+        return back();
+    }
+
+    public function show($id)
+    {
+        $blog = Blog::findOrFail($id);
+        return view('blog.show', compact('blog'));
+    }
 }
