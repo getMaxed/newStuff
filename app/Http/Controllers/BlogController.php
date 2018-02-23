@@ -43,19 +43,33 @@ class BlogController extends Controller
         $input = $request->all();
         $blog = Blog::findOrFail($id);
         $blog->update($input);
-        return back();
+        return redirect('blog');
     }
 
     public function destroy(Request $request, $id)
     {
         $blog = Blog::findOrFail($id);
         $blog->delete($request->all());
-        return redirect('/blog');
+        return redirect('/blog/bin');
     }
 
     public function bin()
     {
         $deletedBlogs = Blog::onlyTrashed()->get();
         return view('blog.bin', compact('deletedBlogs'));
+    }
+
+    public function restore($id)
+    {
+        $restoredBlogs = Blog::onlyTrashed()->findOrFail($id);
+        $restoredBlogs->restore($restoredBlogs);
+        return redirect('/blog');
+    }
+
+    public function destroyBlog($id)
+    {
+        $destroyBlog = Blog::onlyTrashed()->findOrFail($id);
+        $destroyBlog->forceDelete($destroyBlog);
+        return back();
     }
 }
