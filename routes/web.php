@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('/blog/{id}', 'BlogController@bin');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,3 +25,5 @@ Route::post('/blog/store', 'BlogController@store');
 Route::get('/blog/{id}', 'BlogController@show');
 Route::get('/blog/{id}/edit', 'BlogController@edit');
 Route::patch('/blog/{id}', 'BlogController@update');
+Route::delete('/blog/{id}', 'BlogController@destroy');
+

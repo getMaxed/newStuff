@@ -24,6 +24,12 @@
                 </div>
 
                 {!! Form::close() !!}
+
+                {!! Form::open(['method' => 'DELETE', 'action' => ['BlogController@destroy', $blog->id]]) !!}
+                    <div class="form-group">
+                        {!! Form::submit('Delete Blog', ['class' => 'btn btn-danger']) !!}
+                    </div>
+                {!! Form::close() !!}
             </div>
         </div>
 
