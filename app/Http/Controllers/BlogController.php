@@ -23,7 +23,7 @@ class BlogController extends Controller
     {
         $input = $request->all();
         Blog::create($input);
-        return back();
+        return redirect('blog');
     }
 
     public function show($id)
