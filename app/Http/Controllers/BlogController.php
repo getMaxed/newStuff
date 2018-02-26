@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['index', 'show']]);
+    }
+
     public function index()
     {
         $blogs = Blog::latest()->get();

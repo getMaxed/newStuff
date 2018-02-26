@@ -1,12 +1,11 @@
 @extends('layouts.app')
 @section('content')
-
     <div id="welcome">
         <div class="flex-center position-ref full-height">
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    New IT Books
                 </div>
 
                 <div class="links">
