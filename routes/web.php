@@ -31,3 +31,5 @@ Route::patch('/blog/{id}', 'BlogController@update');
 Route::delete('/blog/{id}', 'BlogController@destroy');
 
 Route::get('admin', 'AdminController@index');
+
+Route::resource('categories', 'CategoryController');
