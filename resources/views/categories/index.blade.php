@@ -10,7 +10,7 @@
             @foreach($categories as $category)
                 {{--<li>{{ $category->name }}</li>--}}
                 @if ($category->blog->count() > 0)
-                    <a href="#">{{ $category->name }}</a>
+                    <a href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a>
                 @endif
             @endforeach
         </div>

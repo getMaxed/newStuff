@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use App\Category;
 use Illuminate\Http\Request;
 
 
@@ -22,13 +23,18 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view('blog.create');
+        $categories = Category::pluck('name', 'id');
+        return view('blog.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
         $input = $request->all();
-        Blog::create($input);
+        $blog = Blog::create($input);
+        if ($categoryIds = $request->category_id) {
+            $blog->category()->sync($categoryIds);
+        }
+
         return redirect('blog');
     }
 
@@ -40,8 +46,9 @@ class BlogController extends Controller
 
     public function edit($id)
     {
+        $categories = Category::pluck('name', 'id');
         $blog = Blog::findOrFail($id);
-        return view('blog.edit', compact('blog'));
+        return view('blog.edit', compact('blog', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -49,12 +56,17 @@ class BlogController extends Controller
         $input = $request->all();
         $blog = Blog::findOrFail($id);
         $blog->update($input);
+        if ($categoryIds = $request->category_id) {
+            $blog->category()->sync($categoryIds);
+        }
         return redirect('blog');
     }
 
     public function destroy(Request $request, $id)
     {
         $blog = Blog::findOrFail($id);
+        $categoryIds = $request->category_id;
+        $blog->category()->detach($categoryIds);
         $blog->delete($request->all());
         return redirect('/blog/bin');
     }
