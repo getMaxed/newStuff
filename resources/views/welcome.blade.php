@@ -1,4 +1,7 @@
 @extends('layouts.app')
+
+@include('partials.meta-static')
+
 @section('content')
     <div id="welcome">
         <div class="flex-center position-ref full-height">

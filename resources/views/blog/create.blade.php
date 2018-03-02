@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+@include('partials.tinymce')
+
     <main class="container">
 
         <div class="container-fluid">
@@ -24,6 +26,10 @@
                 <div class="form-group">
                     {!! Form::label("category_id", "Category:") !!}
                     {!! Form::select("category_id[]", $categories, null, ['id' => 'tag_list', 'class' => 'form-control', 'multiple']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label("meta_desc", "Meta Description:") !!}
+                    {!! Form::text("meta_desc", null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit("Create a Blog", ['class' => 'btn btn-primary']) !!}

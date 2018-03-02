@@ -8,11 +8,16 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    @include('partials.meta-static')
+    @include('partials.meta-dynamic')
+    <title>@yield('meta-title')</title>
+    <meta name="description" content="@yield('meta-desc')">
+    <meta name="author" content="@yield('meta-author')">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">

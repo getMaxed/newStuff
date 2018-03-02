@@ -1,0 +1,2 @@
+@section('meta-title') newStuff - Reviews on the the newest stuff in music @endsection
+@section('meta-desc') newStuff has the reviews on the the newest stuff in music. Keep up with what's happening in the world of music @endsection

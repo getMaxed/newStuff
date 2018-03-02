@@ -11,6 +11,8 @@
 |
 */
 
+//View::share('blog', App\Blog::all());
+
 Route::get('/', function () {
     return view('welcome');
 });
