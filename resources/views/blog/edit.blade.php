@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+@include('partials.tinymce')
+
     <main class="container">
 
         <div class="container-fluid">

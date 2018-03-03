@@ -35,3 +35,4 @@ Route::delete('/blog/{id}', 'BlogController@destroy');
 Route::get('admin', 'AdminController@index');
 
 Route::resource('categories', 'CategoryController');
+Route::resource('media', 'PhotosController');
