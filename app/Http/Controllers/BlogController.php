@@ -18,7 +18,7 @@ class BlogController extends Controller
 
     public function index()
     {
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::where('status', 0)->latest()->get();
         return view('blog.index', compact('blogs'));
     }
 
@@ -87,6 +87,12 @@ class BlogController extends Controller
             $blog->category()->sync($categoryIds);
         }
         return redirect('blog');
+    }
+
+    public function publish($id)
+    {
+        $blog = Blog::findOrFail($id);
+        var_dump($blog);
     }
 
     public function destroy(Request $request, $id)

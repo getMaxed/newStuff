@@ -10,6 +10,9 @@
             @foreach($photos as $photo)
                 <li>
                     <img height="100" src="/images/{{ $photo->photo }}" alt="">
+                    {{ Form::open(['method' => 'DELETE', 'action' => ['PhotosController@destroy', $photo->id]]) }}
+                        {!! Form::submit('Delete Photo', ['class' => 'btn btn-danger']) !!}
+                    {{ Form::close() }}}
                 </li>
             @endforeach
         </div>
