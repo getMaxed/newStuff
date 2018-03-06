@@ -89,10 +89,12 @@ class BlogController extends Controller
         return redirect('blog');
     }
 
-    public function publish($id)
+    public function publish(Request $request, $id)
     {
+        $input = $request->all();
         $blog = Blog::findOrFail($id);
-        var_dump($blog);
+        $blog->update($input);
+        return redirect('admin');
     }
 
     public function destroy(Request $request, $id)

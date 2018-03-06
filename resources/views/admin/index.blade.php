@@ -36,7 +36,8 @@
                                 <th>{{ $blog->status == 0 ? 'Draft' : 'Published' }}</th>
                                 <td>
                                     {{ Form::model($blog, ['method' => 'PATCH', 'action' => ['BlogController@publish', $blog->id]]) }}
-                                        {{ Form::submit('Publish', ['class' => 'btn btn-success']) }}
+                                    {!! Form::select("status", ['0' => 'Draft', '1' => 'Published'], null, ['class' => 'btn btn-primary'])  !!} </td>
+                                        <td>{{ Form::submit('Submit', ['class' => 'btn btn-success btn-xs']) }}
                                     {{ Form::close() }}
                                 </td>
                             </tr>
