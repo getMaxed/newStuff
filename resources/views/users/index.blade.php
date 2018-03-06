@@ -19,6 +19,8 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Joined</th>
+                        <th>Role</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,7 +29,16 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->created_at->diffForHumans() }}</td>
+                            <td>
+                                {{ Form::model($user, ['method' => 'PATCH', 'action' => ['UserController@update', $user->id]]) }}
+                                {!! Form::select("role_id", ['1' => 'Administrator', '2' => 'Author', '3' => 'Subscriber'], null, ['class' => 'btn btn-primary']) !!}
+                            </td>
+                            <td>
+                                {{ Form::submit('Submit', ['class' => 'btn btn-success btn-xs']) }}
+                                {{ Form::close() }}
+                            </td>
                         </tr>
+
                     @endforeach
                     </tbody>
                 </table>
