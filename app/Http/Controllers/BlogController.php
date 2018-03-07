@@ -7,6 +7,7 @@ use App\Category;
 use App\Photo;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Session;
 
 class BlogController extends Controller
 {
@@ -30,6 +31,22 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
+        $rules = [
+            'title' => ['required', 'min:20', 'max:200', 'unique:blogs'],
+            'body' => ['required', 'min:200'],
+            'photo_id' => ['mimes:jpeg,jpg,png', 'max:10000'],
+            'category_id' => ['required'],
+            'meta_desc' => ['required', 'min:10, max:300'],
+        ];
+
+        $message = [
+            'photo_id.mimes' => 'Your image must be jpeg, jpg or png',
+            'category_id.required' => 'The category field is required',
+            'photo_id.max' => 'Your image should not exceed 10mb'
+        ];
+
+        $this->validate($request, $rules, $message);
+
         $input = $request->all();
         $input['slug'] = str_slug($request->title);
         $input['meta_title'] = $request->title;
@@ -46,6 +63,8 @@ class BlogController extends Controller
         if ($categoryIds = $request->category_id) {
             $blog->category()->sync($categoryIds);
         }
+
+        Session::flash('flash_message', 'Blog is created');
 
         return redirect('blog');
     }
@@ -65,6 +84,21 @@ class BlogController extends Controller
 
     public function update(Request $request, $id)
     {
+        $rules = [
+            'title' => ['required', 'min:20', 'max:200'],
+            'body' => ['required', 'min:200'],
+            'photo_id' => ['mimes:jpeg,jpg,png', 'max:10000'],
+            'meta_desc' => ['required', 'min:10, max:300'],
+        ];
+
+        $message = [
+            'photo_id.mimes' => 'Your image must be jpeg, jpg or png',
+            'category_id.required' => 'The category field is required',
+            'photo_id.max' => 'Your image should not exceed 10mb'
+        ];
+
+        $this->validate($request, $rules, $message);
+
         $input = $request->all();
         $blog = Blog::findOrFail($id);
 
