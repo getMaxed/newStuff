@@ -8,6 +8,7 @@ use App\Photo;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -36,7 +37,7 @@ class BlogController extends Controller
             'body' => ['required', 'min:200'],
             'photo_id' => ['mimes:jpeg,jpg,png', 'max:10000'],
             'category_id' => ['required'],
-            'meta_desc' => ['required', 'min:10, max:300'],
+            'meta_desc' => ['required', 'min:10', 'max:30'],
         ];
 
         $message = [
@@ -49,6 +50,7 @@ class BlogController extends Controller
 
         $input = $request->all();
         $input['slug'] = str_slug($request->title);
+        $input['user_id'] = Auth::user()->id;
         $input['meta_title'] = $request->title;
 
         if ($file = $request->file('photo_id')) {
@@ -69,9 +71,9 @@ class BlogController extends Controller
         return redirect('blog');
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $blog = Blog::findOrFail($id);
+        $blog = Blog::whereSlug($slug)->first();
         return view('blog.show', compact('blog'));
     }
 
@@ -88,7 +90,6 @@ class BlogController extends Controller
             'title' => ['required', 'min:20', 'max:200'],
             'body' => ['required', 'min:200'],
             'photo_id' => ['mimes:jpeg,jpg,png', 'max:10000'],
-            'meta_desc' => ['required', 'min:10, max:300'],
         ];
 
         $message = [

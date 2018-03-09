@@ -8,7 +8,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    New IT Books
+                    newStuff
                 </div>
 
                 <div class="links">

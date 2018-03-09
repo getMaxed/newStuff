@@ -9,7 +9,7 @@
             </div>
             <h2 class="text-center"><strong>Recent Blogs on {{ $category->name }}</strong></h2>
             @foreach($category->blog as $blog)
-                <h2><a href="{{ action('BlogController@show', [$blog->id]) }}"> {{ $blog->title }}</a></h2>
+                <h2><a href="{{ action('BlogController@show', [$blog->slug]) }}"> {{ $blog->title }}</a></h2>
             @endforeach
         </div>
 

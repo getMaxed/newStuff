@@ -11,7 +11,7 @@
                 <button class="btn btn-primary link"><a style="color: #fff;" href="{{ url('/blog/create') }}">Create Blog</a></button>
                 <button class="btn btn-danger link"><a style="color: #fff;" href="{{ url('/blog/bin') }}">Trashed Blogs</a></button>
                 <button class="btn btn-success link"><a style="color: #fff;" href="{{ url('/media') }}">Featured Images</a></button>
-                <button class="btn btn-primary link"><a style="color: #fff;" href="{{ url('/users') }}">Users</a></button>
+                <button class="btn btn-primary link"><a style="color: #fff;" href="{{ url('/userslist') }}">Users</a></button>
                 <button class="btn btn-danger link"><a style="color: #333;" href="{{ url('/categories/create') }}">Categories</a></button>
             </div>
         </div>
@@ -24,22 +24,24 @@
                 <table class="table table-stripped">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Blog Title</th>
                             <th>Blog Content</th>
-                            <th>Status</th>
+                            <th>Action</th>
                             <th>Settings</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($blog as $blog)
                             <tr>
-                                <th>{{ $blog->title }}</th>
-                                <th>{!! str_limit($blog->body, 100) !!}</th>
-                                <th>{{ $blog->status == 0 ? 'Draft' : 'Published' }}</th>
-                                <td>
-                                    {{ Form::model($blog, ['method' => 'PATCH', 'action' => ['BlogController@publish', $blog->id]]) }}
-                                    {!! Form::select("status", ['0' => 'Draft', '1' => 'Published'], null, ['class' => 'btn btn-primary'])  !!} </td>
-                                        <td>{{ Form::submit('Submit', ['class' => 'btn btn-success btn-xs']) }}
+                                {{ Form::model($blog, ['method' => 'PATCH', 'action' => ['BlogController@publish', $blog->id]]) }}
+
+                                @include('partials.error-message')
+
+                                <td>{!! Form::text("title", null, ['class' => 'form-control']) !!}</td>
+                                <td>{!! Form::textarea("body", null, ['class' => 'form-control', 'size' => '20x5']) !!}</td>
+                                <td>{!! Form::select("status", ['0' => 'Draft', '1' => 'Published'], null, ['class' => 'btn btn-primary'])  !!} </td>
+                                <td>{{ Form::submit('Submit', ['class' => 'btn btn-success btn-xs']) }}
                                     {{ Form::close() }}
                                 </td>
                             </tr>
