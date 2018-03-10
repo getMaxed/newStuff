@@ -34,9 +34,33 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li><a class="nav-link" href="{{ url('blog') }}">Blog</a></li>
-                        <li><a class="nav-link" href="{{ url('admin') }}">Admin</a></li>
+                    <ul class="navbar-nav mr-auto navbar-left">
+                        <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+
+                            @if ($c)
+                                <ul class="dropdown-menu" role="menu">
+                                    @foreach($c as $c)
+                                        @if ($c->blog->count() > 0)
+                                            <li><a href="{{ route('categories.show', $c->slug) }}"></a>{{ $c->name }}</li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            @endif
+
+                            {{--@if ($categories)--}}
+                                {{--<ul class="dropdown-menu" role="menu">--}}
+                                {{--@foreach($categories as $category)--}}
+                                    {{--@if ($category->blog->count() > 0)--}}
+                                        {{--<li><a href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a></li>--}}
+                                    {{--@endif    --}}
+                                {{--@endforeach--}}
+                                {{--</ul>--}}
+                            {{--@endif--}}
+
+                        </li>
+                                    <li><a class="nav-link" href="{{ url('admin') }}">Admin</a></li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

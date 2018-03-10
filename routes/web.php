@@ -11,6 +11,10 @@
 |
 */
 
+View::share('c', App\Category::latest()->get()); // c = category
+
+//View::share('categories', App\Category::latest()->get());
+
 View::share('blog', App\Blog::all());
 
 Route::get('/', function () {
