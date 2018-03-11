@@ -38,7 +38,10 @@
 
                                 @include('partials.error-message')
 
-                                <td>{!! Form::text("title", null, ['class' => 'form-control']) !!}</td>
+                                <td>
+                                    {!! Form::text("title", null, ['class' => 'form-control']) !!}
+                                    <a class="btn btn-danger btn-xs" href="{{ action('BlogController@edit', [$blog->id]) }}">Edit</a>
+                                </td>
                                 <td>{!! Form::textarea("body", null, ['class' => 'form-control', 'size' => '20x5']) !!}</td>
                                 <td>{!! Form::select("status", ['0' => 'Draft', '1' => 'Published'], null, ['class' => 'btn btn-primary'])  !!} </td>
                                 <td>{{ Form::submit('Submit', ['class' => 'btn btn-success btn-xs']) }}

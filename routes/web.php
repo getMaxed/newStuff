@@ -44,5 +44,5 @@ Route::get('admin', 'AdminController@index');
 Route::resource('categories', 'CategoryController');
 Route::resource('media', 'PhotosController');
 
-Route::get('userslist', 'UserController@userlist');
+Route::get('userslist', 'UserController@userslist');
 Route::resource('users', 'UserController');
