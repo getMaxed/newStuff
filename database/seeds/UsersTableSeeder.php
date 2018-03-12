@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
         $user_one = new User();
         $user_one->role_id = 1;
         $user_one->name = 'Max F';
+        $user_one->username = 'mf237';
         $user_one->email = 'test@test.test';
         $user_one->password = bcrypt('sdfsdf');
         $user_one->save();

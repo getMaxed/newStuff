@@ -26,7 +26,7 @@
                         <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td>{{ $user->name }}</td>
+                                <td><a href="{{ route('users.show', $user->username) }}">{{ $user->name }}</a></td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at->diffForHumans() }}</td>
                                 <td>
@@ -44,7 +44,7 @@
                     </table>
                 </div>
             </div>
-
+        </div>
     </main>
 
 
