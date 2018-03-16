@@ -35,15 +35,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto navbar-left">
-                        <li class="dropdown">
+                        <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
 
                             @if ($c)
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu">
                                     @foreach($c as $c)
-                                        @if ($c->blog->count() > 0)
-                                            <li><a href="{{ route('categories.show', $c->slug) }}"></a>{{ $c->name }}</li>
-                                        @endif
+                                        {{--@if ($c->blog->count() > 0)--}}
+                                            <li><a href="{{ route('categories.show', $c->slug) }}">{{ $c->name }}</a></li>
+                                        {{--@endif--}}
                                     @endforeach
                                 </ul>
                             @endif
@@ -53,7 +53,7 @@
                                 {{--@foreach($categories as $category)--}}
                                     {{--@if ($category->blog->count() > 0)--}}
                                         {{--<li><a href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a></li>--}}
-                                    {{--@endif    --}}
+                                    {{--@endif--}}
                                 {{--@endforeach--}}
                                 {{--</ul>--}}
                             {{--@endif--}}

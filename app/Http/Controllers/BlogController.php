@@ -85,6 +85,14 @@ class BlogController extends Controller
         return view('blog.edit', compact('blog', 'categories'));
     }
 
+//    public function publish(Request $request, $id)
+//    {
+//        $input = $request->all();
+//        $blog = Blog::findOrFail($id);
+//        $blog->update($input);
+//        return redirect('admin');
+//    }
+
     public function update(Request $request, $id)
     {
         $rules = [
@@ -123,14 +131,6 @@ class BlogController extends Controller
             $blog->category()->sync($categoryIds);
         }
         return redirect('blog');
-    }
-
-    public function publish(Request $request, $id)
-    {
-        $input = $request->all();
-        $blog = Blog::findOrFail($id);
-        $blog->update($input);
-        return redirect('admin');
     }
 
     public function destroy(Request $request, $id)

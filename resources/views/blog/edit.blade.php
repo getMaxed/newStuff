@@ -38,6 +38,8 @@
                     {!! Form::submit("Edit Blog", ['class' => 'btn btn-primary']) !!}
                 </div>
 
+
+
                 {!! Form::close() !!}
 
                 {!! Form::open(['method' => 'DELETE', 'action' => ['BlogController@destroy', $blog->id]]) !!}

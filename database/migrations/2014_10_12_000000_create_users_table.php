@@ -17,7 +17,13 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('role_id');
             $table->string('name');
+            $table->string('about');
             $table->string('username');
+            $table->string('url');
+            $table->string('website');
+            $table->string('facebook');
+            $table->string('twitter');
+            $table->string('instagram');
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();

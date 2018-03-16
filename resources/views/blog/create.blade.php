@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label("category_id", "Category:") !!}
-                    {!! Form::select("category_id[]", $categories, null, ['id' => 'tag_list', 'class' => 'form-control', 'multiple']) !!}
+                    {!! Form::select("category_id[]", $categories, null, ['id' => 'tag_list', 'class' => 'form-control', 'placeholder' => 'please select a music genre']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label("meta_desc", "Meta Description:") !!}

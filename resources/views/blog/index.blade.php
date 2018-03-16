@@ -26,7 +26,7 @@
                     <p>
 
                         @if($blog->user)
-                            <i class="fa fa-btn fa-user"></i>Blog by <a href="#">{{ $blog->user->name }}</a> <i class="fa fa-btn fa-clock-o"></i>
+                            <i class="fa fa-btn fa-user"></i>Blog by <a href="{{ route('users.show', $blog->user->username) }}">{{ $blog->user->name }}</a> <i class="fa fa-btn fa-clock-o"></i>
                         @endif
 
                         Posted <strong>{{ $blog->created_at->diffForHumans() }}</strong>
