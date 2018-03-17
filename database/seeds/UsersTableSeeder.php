@@ -17,7 +17,6 @@ class UsersTableSeeder extends Seeder
         $user_one->name = 'Max F';
         $user_one->about = 'Hi, my name is Max';
         $user_one->username = 'mf237';
-        $user_one->url = '/mf237';
         $user_one->website = 'www.usa.gov';
         $user_one->facebook = 'www.facebook.com';
         $user_one->twitter = 'www.twitter.com';

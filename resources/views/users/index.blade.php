@@ -10,6 +10,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <button class="btn btn-primary link"><a style="color: #fff;" href="{{ url('/blog/create') }}">Create Blog</a></button>
                 <button class="btn btn-danger link"><a style="color: #333;" href="{{ url('/categories/create') }}">Categories</a></button>
+                <button class="btn btn-success link"><a style="color: #333;" href="{{ action('UserController@edit', Auth::user()->username) }}">Profile Settings</a></button>
             </div>
         </div>
         <br>

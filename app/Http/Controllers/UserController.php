@@ -8,6 +8,12 @@ use App\User;
 
 use App\Role;
 
+use App\Photo;
+
+use Carbon\Carbon;
+
+use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
     /**
@@ -85,6 +91,17 @@ class UserController extends Controller
     {
         $input = $request->all();
         $user = User::whereUsername($username)->first();
+
+        if (Auth::user()->id == $user->id) {
+            if ($file = $request->file('photo_id')) {
+                $name = Carbon::now(). '.' .$file->getClientOriginalName();
+                $name = str_replace(':', '-', $name);
+                $file->move('images', $name);
+                $photo = Photo::create(['photo' => $name, 'title' => $name]);
+                $input['photo_id'] = $photo->id;
+            }
+        }
+
         $user->update($input);
         return back();
     }

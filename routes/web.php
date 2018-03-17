@@ -16,6 +16,7 @@ View::share('c', App\Category::latest()->get()); // c = category
 //View::share('categories', App\Category::latest()->get());
 
 View::share('blog', App\Blog::all());
+View::share('user', App\User::all());
 
 Route::get('/', function () {
     return view('welcome');
