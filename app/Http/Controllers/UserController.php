@@ -14,6 +14,8 @@ use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Auth;
 
+use Session;
+
 class UserController extends Controller
 {
     /**
@@ -89,11 +91,30 @@ class UserController extends Controller
      */
     public function update(Request $request, $username)
     {
+        $rules = [
+            'photo_id' => ['mimes:jpeg,jpg,png', 'max:10000'],
+            'name' => ['min:1', 'max:32'],
+            'about' => ['min:8', 'max:2000']
+        ];
+
+        $message = [
+            'photo_id.mimes' => 'Image must be jpeg, jpg or png',
+            'photo_id.max' => 'Image size should not exceed 10 mb',
+        ];
+
+        $this->validate($request, $rules, $message);
+
         $input = $request->all();
         $user = User::whereUsername($username)->first();
 
         if (Auth::user()->id == $user->id) {
             if ($file = $request->file('photo_id')) {
+
+                if ($user->photo) {
+                    unlink('images/' . $user->photo->photo);
+                    $user->photo()->delete('photo');
+                }
+
                 $name = Carbon::now(). '.' .$file->getClientOriginalName();
                 $name = str_replace(':', '-', $name);
                 $file->move('images', $name);
@@ -103,6 +124,7 @@ class UserController extends Controller
         }
 
         $user->update($input);
+        Session::flash('flash_message', 'Profile page is updated');
         return back();
     }
 

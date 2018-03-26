@@ -12,4 +12,9 @@ class Photo extends Model
     {
         $this->belongsTo(Blog::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(Photo::class);
+    }
 }

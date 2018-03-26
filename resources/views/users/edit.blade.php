@@ -10,9 +10,16 @@
                         <h1>{{ $user->name }}</h1>
                         <p>Please make changes to make your profile awesome</p>
                     </div>
+                    @if (Session::has('flash_message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('flash_message') }}
+                            <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        </div>
+                    @endif
                 </div>
                 <div class="col-sm-8 com-sm-offset-2">
                     {!! Form::model($user, ['method' => 'PATCH', 'action' => ['UserController@update', $user->username], 'files' => true]) !!}
+                    @include('partials.error-message')
                         <div class="form-group">
                             {!! Form::label('name', 'Name') !!}
                             {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Your name']) !!}

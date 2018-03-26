@@ -3,9 +3,14 @@
 
     <main class="container-fluid">
 
-        <div class="container-fluid col-sm-12">
+        <div class="container-fluid">
             <div class="jumbotron">
-                <h1>Hello {{ $user->name }}</h1>
+                <div class="col-sm-8">
+                    <h1>Hello {{ $user->name }}</h1>
+                </div>
+                <div class="col-sm-4">
+                    <img class="img-circle" height="100" width="100" src="/images/{{ $user->photo ? $user->photo->photo : 'default.png' }}" alt="">
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">

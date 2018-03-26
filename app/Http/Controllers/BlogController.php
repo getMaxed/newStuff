@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('both', ['only' => ['create', 'store', 'edit', 'update']]);
@@ -48,7 +47,6 @@ class BlogController extends Controller
         ];
 
         $this->validate($request, $rules, $message);
-
         $input = $request->all();
         $input['slug'] = str_slug($request->title);
         $input['user_id'] = Auth::user()->id;
