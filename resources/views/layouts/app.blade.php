@@ -59,7 +59,10 @@
                             {{--@endif--}}
 
                         </li>
-                                    <li><a class="nav-link" href="{{ url('users') }}">Profile</a></li>
+                                    @if (Auth::user())
+                                        <li><a class="nav-link" href="{{ url('users') }}">Dashboard</a></li>
+                                    @endif
+
                                     @if (Auth::user() ? Auth::user()->role->id === 1 : '')
                                         <li><a class="nav-link" href="{{ url('admin') }}">Admin</a></li>
                                     @endif

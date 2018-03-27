@@ -11,6 +11,12 @@
             <br>
 
             <div class="col-sm-12">
+                @if (Session::has('flash_message'))
+                    <div class="alert alert-success">
+                        {{ Session::get('flash_message') }}
+                        <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    </div>
+                @endif
                 <h1 class="page-header">Recent Blogs</h1>
                 <div class="table-responsive">
                     <table class="table table-stripped">
@@ -21,6 +27,7 @@
                             <th>Joined</th>
                             <th>Role</th>
                             <th>Action</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -35,6 +42,12 @@
                                 </td>
                                 <td>
                                     {{ Form::submit('Submit', ['class' => 'btn btn-success btn-xs']) }}
+                                    {{ Form::close() }}
+
+                                </td>
+                                <td>
+                                    {{ Form::model($user, ['method' => 'DELETE', 'action' => ['UserController@destroy', $user->id]]) }}
+                                    {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) }}
                                     {{ Form::close() }}
                                 </td>
                             </tr>

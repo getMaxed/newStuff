@@ -12,6 +12,7 @@
             <hr>
                 {!! Form::open(['method' => 'POST', 'action' => 'CategoryController@store']) !!}
                 <div class="form-group">
+                @include('partials.error-message')
                     {!! Form::label("name", "Name:") !!}
                     {!! Form::text("name", null, ['class' => 'form-control']) !!}
                 </div>
@@ -25,7 +26,13 @@
                 <h2>List</h2>
                 <hr>
                 @foreach($categories as $category)
-                    <li style="list-style-type: none"><a href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a></li>
+                    <li style="list-style-type: none">
+                        <a href="{{ route('categories.show', $category->slug) }}"><h3>{{ $category->name }}</h3></a>
+                        {!! Form::open(['method' => 'DELETE', 'action' => ['CategoryController@destroy', $category->id]]) !!}
+                            {!! Form::submit("Delete", ['class' => 'btn btn-danger btn-xs']) !!}
+                        {!! Form::close() !!}
+                    </li>
+                    <hr />
                 @endforeach
             </div>
 

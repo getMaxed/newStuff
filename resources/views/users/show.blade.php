@@ -7,13 +7,15 @@
             <div class="jumbotron">
                 <div class="col-sm-8">
                     <h1>Hello {{ $user->name }}</h1>
+                    <p>{{ $user->role->name }}</p>
                 </div>
                 <div class="col-sm-4">
+                    <br><br>
                     <img class="img-circle" height="100" width="100" src="/images/{{ $user->photo ? $user->photo->photo : 'default.png' }}" alt="">
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <br>
                     <h1 class="page-header">Latest Blogs</h1>
                     <br>
@@ -29,41 +31,8 @@
                         </ul>
                     @endif
                 </div>
-                <div class="col-sm-6">
-                    @if ($user->about)
-                        <div class="panel panel-info">
-                            <h2>About</h2>
-                            <hr>
-                            <p>{{ $user->about }}</p>
-                        </div>
-                    @endif
-
-                    @if ($user->website)
-                        <div>
-                            <h2>Website</h2>
-                            <a href="http://{{ $user->website }}">{{ $user->website }}</a>
-                        </div>
-                    @endif
-
-                    @if ($user->facebook || $user->twitter || $user->github)
-                        <div>
-                            <h2>Get Social</h2>
-                            <ol class="list-unstyled">
-                                @if ($user->facebook)
-                                    <li><a href="http://{{ $user->facebook }}">{{ $user->facebook }}</a></li>
-                                @endif
-                                @if ($user->twitter)
-                                    <li><a href="http://{{ $user->twitter }}">{{ $user->twitter }}</a></li>
-                                @endif
-                                @if ($user->instagram)
-                                    <li><a href="http://{{ $user->instagram }}">{{ $user->instagram }}</a></li>
-                                @endif
-                            </ol>
-                        </div>
-
-                    @endif
-
-
+                <div class="col-sm-5">
+                    @include('partials.user-sidebar')
                 </div>
             </div>
         </div>

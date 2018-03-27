@@ -94,7 +94,7 @@ class UserController extends Controller
         $rules = [
             'photo_id' => ['mimes:jpeg,jpg,png', 'max:10000'],
             'name' => ['min:1', 'max:32'],
-            'about' => ['min:8', 'max:2000']
+            'about' => ['min:8', 'max:20000']
         ];
 
         $message = [
@@ -136,6 +136,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        Session::flash('flash_message', 'User has been deleted');
+        return back();
     }
 }
