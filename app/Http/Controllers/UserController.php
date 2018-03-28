@@ -18,11 +18,12 @@ use Session;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('admin', ['only' => ['userslist', 'destroy']]);
+    }
+
     public function index()
     {
         $users = User::all();
@@ -79,7 +80,11 @@ class UserController extends Controller
     public function edit($username)
     {
         $user = User::whereUsername($username)->first();
-        return view('users.edit', ['user' => $user]);
+        if (Auth::user()->id == $user->id) {
+            return view('users.edit', ['user' => $user]);
+        } else {
+            return 'No permission';
+        }
     }
 
     /**

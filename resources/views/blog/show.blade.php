@@ -13,7 +13,8 @@
                     @endif
                 </div>
                 <div class="jumbotron">
-                    <h1>{{ $blog->title }}</h1><a style="float: right;" href="{{ action('BlogController@edit', [$blog->id]) }}">Edit</a>
+                    <h1>{{ $blog->title }}</h1>
+                    @if (Auth::user() ? Auth::user()->role_id === 1 || Auth::user()->id === $blog->user_id : '')<a style="float: right;" href="{{ action('BlogController@edit', [$blog->id]) }}">Edit</a>@endif
                 </div>
                 <div class="col-sm-8 col-sm-offset-2">
                     <p>{!! $blog->body !!}</p>
