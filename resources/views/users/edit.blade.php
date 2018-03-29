@@ -32,22 +32,26 @@
                             {!! Form::label('website', 'Website') !!}
                             {!! Form::text('website', null, ['class' => 'form-control', 'placeholder' => 'Paste your website url']) !!}
                         </div>
-                    <div class="form-group">
-                        {!! Form::label('facebook', 'Facebook') !!}
-                        {!! Form::text('facebook', null, ['class' => 'form-control', 'placeholder' => 'Paste your facebook url']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('twitter', 'Twitter') !!}
-                        {!! Form::text('twitter', null, ['class' => 'form-control', 'placeholder' => 'Paste your twitter url']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('instagram', 'Instagram') !!}
-                        {!! Form::text('instagram', null, ['class' => 'form-control', 'placeholder' => 'Paste your instagram url']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('photo_id', 'Profile Picture') !!}
-                        {!! Form::file('photo_id') !!}
-                    </div>
+                        <div class="form-group">
+                            {!! Form::label('facebook', 'Facebook') !!}
+                            {!! Form::text('facebook', null, ['class' => 'form-control', 'placeholder' => 'Paste your facebook url']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('twitter', 'Twitter') !!}
+                            {!! Form::text('twitter', null, ['class' => 'form-control', 'placeholder' => 'Paste your twitter url']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('instagram', 'Instagram') !!}
+                            {!! Form::text('instagram', null, ['class' => 'form-control', 'placeholder' => 'Paste your instagram url']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('photo_id', 'Profile Picture') !!}
+                            {!! Form::file('photo_id') !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('get_email', 'Email alert on new Blog') !!}
+                            {!! Form::select('get_email', ['1' => 'Yes', '0' => 'No'], null, ['class' => 'form-control']) !!}
+                        </div>
                         <div class="form-group">
                             {!! Form::submit("Update", ['class' => 'btn btn-primary']) !!}
                         </div>

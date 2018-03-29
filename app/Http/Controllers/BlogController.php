@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\User;
 
 class BlogController extends Controller
 {
@@ -63,6 +65,13 @@ class BlogController extends Controller
         $blog = Blog::create($input);
         if ($categoryIds = $request->category_id) {
             $blog->category()->sync($categoryIds);
+        }
+
+        $users = User::where('get_email', 1)->get();
+        foreach ($users as $user) {
+            Mail::queue('emails.newBlog', ['blog' => $blog, 'user' => $user], function ($message) use ($user) {
+                $message->to($user->email)->from('info@newstuff.com', 'newStuff')->subject('New blog has been posted. Check it out!');
+            });
         }
 
         Session::flash('flash_message', 'Blog is created');
