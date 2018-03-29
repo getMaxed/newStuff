@@ -67,7 +67,7 @@
                                         <li><a class="nav-link" href="{{ url('admin') }}">Admin</a></li>
                                     @endif
 
-
+                                    <li><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

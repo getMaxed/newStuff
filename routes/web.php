@@ -51,4 +51,8 @@ Route::resource('media', 'PhotosController');
 Route::get('userslist', 'UserController@userslist');
 Route::resource('users', 'UserController');
 
+Route::get('contact', 'MailController@contact');
+Route::post('contact/send', 'MailController@send');
+
 Route::get('/{username?}', array('as' => 'show', 'uses' => 'UserController@show'));
+
