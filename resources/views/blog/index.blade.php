@@ -18,10 +18,31 @@
                 </div>
             @endif
 
+            <div class="jumbotron">
+                {!! Form::open(['action' => 'BlogController@index', 'method' => 'GET', 'role' => 'search']) !!}
+                    <div class="input-group">
+                        {!! Form::text('term', Request::get('term'), ['class' => 'form-control', 'placeholder' => 'Search Blogs', 'id' => 'term']) !!}
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                Search
+                            </button>
+                        </span>
+                    </div>
+                {!! Form::close() !!}
+            </div>
+
             @foreach($blogs as $blog)
                 <article>
+
                     <h2><a href="{{ action('BlogController@show', [$blog->slug]) }}">{{ $blog->title }}</a></h2>
                     {!!  str_limit( $blog->body, 350) !!};
+                    @if($blog->photo)
+                        <br>
+                        <div class="img-responsive">
+                            <img height="250" src="/images/{{ $blog->photo ? $blog->photo->photo : '' }}" alt="{{ str_limit($blog->title, 50) }}">
+                        </div>
+                        <br>
+                    @endif
                     <hr>
                     <p>
 
@@ -40,6 +61,9 @@
                     <br>
                 </article>
             @endforeach
+            <div class="text-center">
+                {!! $blogs->links() !!}
+            </div>
         </div>
     </div>
 

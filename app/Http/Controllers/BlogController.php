@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Blog;
 use App\Category;
 use App\Photo;
+use function foo\func;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
@@ -20,9 +21,22 @@ class BlogController extends Controller
         $this->middleware('admin', ['only' => ['publish', 'destroy', 'bin', 'restore', 'destroyBlog']]);
     }
 
-    public function index()
+//    public function index()
+//    {
+//        $blogs = Blog::where('status', 0)->latest()->paginate(1);
+//        return view('blog.index', compact('blogs'));
+//    }
+
+    public function index(Request $request)
     {
-        $blogs = Blog::where('status', 0)->latest()->get();
+        $blogs = Blog::where(function($query) use ($request) {
+            if($term = $request->get('term')) {
+                $query->orWhere('title', 'like', '%' . $term . '%');
+            }
+        })
+        ->orderBy('id', 'desc')
+        ->paginate(1);
+
         return view('blog.index', compact('blogs'));
     }
 

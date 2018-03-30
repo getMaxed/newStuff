@@ -21,9 +21,7 @@ View::share('c', App\Category::latest()->get()); // c = category
 View::share('blog', App\Blog::all());
 View::share('user', App\User::all());
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as' => '/', 'uses' => 'BlogController@index']);
 
 Auth::routes();
 
